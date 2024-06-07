@@ -30,7 +30,14 @@ wasm-bindgen = "=0.2.92"
 surrealdb = "1.5.2"
 once_cell = "1.19.0"
 serde = { version = "1.0.203", features = ["derive"] }
+leptonic = { version = "0.5.0" }
 
+[workspace.metadata.leptonic]
+# REQUIRED: Leptonic's build-script will copy the Leptonic themes to this directory.
+style-dir = "style"
+
+# REQUIRED: Leptonic's build-script will copy static JS dependencies to this directory.
+js-dir = "public/js"
 
 # See https://github.com/akesson/cargo-leptos for documentation of all the parameters.
 

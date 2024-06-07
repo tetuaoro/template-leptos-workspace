@@ -5,7 +5,7 @@
 
 # Leptos Axum Starter Template
 
-This is a template for use with the [Leptos](https://github.com/leptos-rs/leptos) web framework and the [cargo-leptos](https://github.com/akesson/cargo-leptos) tool using [Axum](https://github.com/tokio-rs/axum).
+This is a template for use with the [Leptos](https://github.com/leptos-rs/leptos) web framework, the [cargo-leptos](https://github.com/akesson/cargo-leptos) tool using [Axum](https://github.com/tokio-rs/axum), the multi-model database [Surrealdb](https://github.com/surrealdb/surrealdb/) and the awesome component library web, [Leptonic](https://github.com/lpotthast/leptonic).
 
 ## Creating your template repo
 

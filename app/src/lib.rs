@@ -3,6 +3,7 @@ use crate::error_template::{AppError, ErrorTemplate};
 use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
+use leptonic::prelude::*;
 
 pub mod error_template;
 
@@ -23,11 +24,15 @@ pub fn App() -> impl IntoView {
             outside_errors.insert_with_default_key(AppError::NotFound);
             view! { <ErrorTemplate outside_errors/> }.into_view()
         }>
-            <main>
-                <Routes>
-                    <Route path="" view=HomePage/>
-                </Routes>
-            </main>
+            <Root default_theme=LeptonicTheme::default()>
+                <Box style="display: flex; flex-direction: column; align-items: center; padding: 1em; min-height: 100%; min-wyidth: 100%">
+                    <main>
+                        <Routes>
+                            <Route path="" view=HomePage/>
+                        </Routes>
+                    </main>
+                </Box>
+            </Root>
         </Router>
     }
 }
@@ -40,7 +45,7 @@ fn HomePage() -> impl IntoView {
     let on_click = move |_| set_count.update(|count| *count += 1);
 
     view! {
-        <h1>"Welcome to Leptos!"</h1>
-        <button on:click=on_click>"Click Me: " {count}</button>
+        <H1>"Welcome to Leptos!"</H1>
+        <Button on_click>"Click Me: " {count} ></Button>
     }
 }
