@@ -4,8 +4,10 @@ use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
 use leptonic::prelude::*;
+use tailwind::*;
 
 pub mod error_template;
+mod tailwind;
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -25,10 +27,11 @@ pub fn App() -> impl IntoView {
             view! { <ErrorTemplate outside_errors/> }.into_view()
         }>
             <Root default_theme=LeptonicTheme::default()>
-                <Box style="display: flex; flex-direction: column; align-items: center; padding: 1em; min-height: 100%; min-wyidth: 100%">
+                <Box style="display: flex; flex-direction: column; align-items: center; padding: 1em; min-height: 100%; min-width: 100%">
                     <main>
                         <Routes>
                             <Route path="" view=HomePage/>
+                            <Route path="/tailwind" view=TailwindPage/>
                         </Routes>
                     </main>
                 </Box>
@@ -47,5 +50,8 @@ fn HomePage() -> impl IntoView {
     view! {
         <H1>"Welcome to Leptos!"</H1>
         <Button on_click>"Click Me: " {count} ></Button>
+        <div>
+            <A href="/tailwind">"Go to tailwind page"</A>
+        </div>
     }
 }
