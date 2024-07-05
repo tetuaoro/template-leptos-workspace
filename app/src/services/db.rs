@@ -1,6 +1,7 @@
 cfg_if::cfg_if! {if #[cfg(feature = "ssr")] {
+use crate::error::Result;
 use once_cell::sync::Lazy;
-use surrealdb::{engine::remote::ws::Client, Result, Surreal};
+use surrealdb::{engine::remote::ws::Client, Surreal};
 type SC = Surreal<Client>;
 static DB: Lazy<SC> = Lazy::new(Surreal::init);
 }}
@@ -19,7 +20,7 @@ static DB: Lazy<SC> = Lazy::new(Surreal::init);
 /// ### Get database client
 ///
 /// ```rust
-/// let client: Result<Surreal<_>, surrealdb::Error> = get_db().await;
+/// let client: Result<Surreal<_>, crate::error::Error> = get_db().await;
 /// ```
 ///
 /// [`Lazy`]: https://docs.rs/once_cell/latest/once_cell/sync/struct.Lazy.html
@@ -42,11 +43,11 @@ pub async fn get_db() -> Result<&'static SC> {
     const DB_R_PWD: &str = "SURREAL_PASS";
     const DB_DEFINITION_SCHEMA: &str = "SURREAL_DEFINITION_SCHEMA_PATH";
 
-    let endpoint = env::var(DB_ENDPOINT).unwrap_or_default();
-    let namespace = env::var(DB_NS).unwrap_or_default();
-    let database = env::var(DB_DB).unwrap_or_default();
-    let username = env::var(DB_R_USER).unwrap_or_default();
-    let password = env::var(DB_R_PWD).unwrap_or_default();
+    let endpoint = env::var(DB_ENDPOINT)?;
+    let namespace = env::var(DB_NS)?;
+    let database = env::var(DB_DB)?;
+    let username = env::var(DB_R_USER)?;
+    let password = env::var(DB_R_PWD)?;
 
     DB.connect::<Ws>(endpoint).await?;
     DB.signin(Root {

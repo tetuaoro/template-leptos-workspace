@@ -3,6 +3,8 @@ use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
 
+#[cfg(feature = "ssr")]
+pub mod error;
 pub mod error_template;
 pub mod services;
 

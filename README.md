@@ -53,18 +53,30 @@ SURREAL_PASS=""
 SURREAL_DEFINITION_SCHEMA_PATH=""
 ```
 
-Replace the empty strings with the appropriate values for your project. All the variables are require while `SURREAL_DEFINITION_SCHEMA_PATH` is optional.
+Replace the empty strings with the appropriate values for your project. All the variables are required while `SURREAL_DEFINITION_SCHEMA_PATH` is optional.
+
+*N.B When your app is running, the instance runs with a random guess [scope user](https://surrealdb.com/docs/surrealdb/surrealql/statements/define/scope#example-usage) to ensure security and permission access.*
+
+#### SURREALDB DEFINITION
+
+A starter template file `SURREALDB_DEFINITION` is define in the root project.
 
 ### Usage
 
-To use the `surrealdb` crate for database operations, you can use the `get_db()` function provided in the `db` module. Here's an example of how to use it :
+To use the `surrealdb` crate for database operations, you can use the `get_db()` function provided. To initialize database at runtime, uncomment the main server function :
 
+```rust
+# server/src/main.rs
+// services::get_db().await.expect("couldn't intialize database");
+```
+
+Here's an example of how to use the `get_db()` function :
 
 ```rust
 use services::get_db;
 ...
 // somewhere inside an async fn
-let client: Result<Surreal<_>, surrealdb::Error> = db::get_db().await;
+let client: Result<Surreal<_>, crate::error::Error> = db::get_db().await;
 ...
 ```
 
