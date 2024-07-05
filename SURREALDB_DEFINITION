@@ -1,0 +1,11 @@
+DEFINE TABLE IF NOT EXISTS user SCHEMAFULL;
+
+DEFINE FIELD username ON user TYPE string;
+DEFINE FIELD password ON user TYPE string;
+DEFINE FIELD ROLE ON user TYPE string;
+
+DEFINE INDEX username ON user FIELDS email UNIQUE;
+
+DEFINE SCOPE IF NOT EXISTS account SESSION 12w
+	SIGNUP (CREATE user SET ROLE = $role, username = $username, password = crypto::argon2::generate($password))
+	SIGNIN (SELECT * FROM user WHERE username = $username AND crypto::argon2::compare(password, $password));

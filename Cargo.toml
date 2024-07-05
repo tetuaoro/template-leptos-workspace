@@ -9,40 +9,24 @@ lto = true
 opt-level = 'z'
 
 [workspace.dependencies]
-leptos = { version = "0.6" }
+leptos = { version = "0.6", features = ["experimental-islands"] }
 leptos_meta = { version = "0.6" }
 leptos_router = { version = "0.6" }
-leptos_axum = { version = "0.6" }
+leptos_axum = { version = "0.6", features = ["experimental-islands"] }
 
 axum = "0.7"
 cfg-if = "1"
 console_error_panic_hook = "0.1.7"
 console_log = "1"
-http = "1"
 log = "0.4.20"
-simple_logger = "4.2.0"
+http = "1"
 thiserror = "1"
 tokio = { version = "1.33.0", features = ["full"] }
 tower = { version = "0.4.13", features = ["full"] }
 tower-http = { version = "0.5", features = ["full"] }
 wasm-bindgen = "=0.2.92"
 #
-surrealdb = "1.5.2"
-once_cell = "1.19.0"
-serde = { version = "1.0.203", features = ["derive"] }
-leptonic = { version = "0.5.0" }
 
-[workspace.metadata.leptonic]
-# REQUIRED: Leptonic's build-script will copy the Leptonic themes to this directory.
-style-dir = "style"
-
-# REQUIRED: Leptonic's build-script will copy static JS dependencies to this directory.
-js-dir = "public/js"
-
-# See https://github.com/akesson/cargo-leptos for documentation of all the parameters.
-
-# A leptos project defines which workspace members
-# that are used together frontend (lib) & server (bin)
 [[workspace.metadata.leptos]]
 # this name is used for the wasm, js and css file names
 name = "start-axum-workspace"
@@ -66,13 +50,13 @@ style-file = "style/main.scss"
 # The tailwind input file.
 #
 # Optional, Activates the tailwind build
-tailwind-input-file = "style/tailwind.css"
+# tailwind-input-file = "style/tailwind.css"
 
 # The tailwind config file.
 #
 # Optional, defaults to "tailwind.config.js" which if is not present
 # is generated for you
-tailwind-config-file = "tailwind.config.js"
+# tailwind-config-file = "tailwind.config.js"
 
 # Assets source dir. All files found here will be copied and synchronized to site-root.
 # The assets-dir cannot have a sub directory with the same name/path as site-pkg-dir.

@@ -14,13 +14,3 @@ body {
     display: flex;
     flex-direction: column;
 }
-
-@import "./leptonic/leptonic-themes";
-
-[data-theme="light"] {
-    --brand-color: #3061aa;
-}
-
-[data-theme="dark"] {
-    --brand-color: #3061aa;
-}

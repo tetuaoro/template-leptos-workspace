@@ -35,7 +35,6 @@ Addtionally, Cargo.toml may need updating as new versions of the dependencies ar
 Note that for islands to work correctly, you need to have a `use app;` in your frontend `lib.rs` otherwise rustc / wasm_bindgen gets confused.
 To prevent clippy from complaining, at the top of the `frontend/lib.rs` file place:
 ```rust
-#[allow(clippy::single_component_path_imports)]
 #[allow(unused_imports)]
 use app;
 ```
@@ -46,13 +45,15 @@ use app;
 If you use `surrealdb` crate for your database, you need to create `.env` file  at the root directory of the project with the following content :
 
 ```
-SURREALDB_NS=""
-SURREALDB_DB=""
-# optional, default 127.0.0.1:8000
-SURREALDB_ENDPOINT=""
+SURREAL_NS=""
+SURREAL_DB=""
+SURREAL_BIND=""
+SURREAL_USER=""
+SURREAL_PASS=""
+SURREAL_DEFINITION_SCHEMA_PATH=""
 ```
 
-Replace the empty strings with the appropriate values for your project. The `SURREALDB_NS` and `SURREALDB_DB` variables are required, while `SURREALDB_ENDPOINT` is optional and has a default value of 127.0.0.1:8000.
+Replace the empty strings with the appropriate values for your project. All the variables are require while `SURREAL_DEFINITION_SCHEMA_PATH` is optional.
 
 ### Usage
 
@@ -60,7 +61,7 @@ To use the `surrealdb` crate for database operations, you can use the `get_db()`
 
 
 ```rust
-use server::db;
+use services::get_db;
 ...
 // somewhere inside an async fn
 let client: Result<Surreal<_>, surrealdb::Error> = db::get_db().await;

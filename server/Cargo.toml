@@ -7,17 +7,14 @@ edition = "2021"
 
 [dependencies]
 app = { path = "../app", default-features = false, features = ["ssr"] }
-leptos = { workspace = true, features = [ "ssr" ]}
+leptos = { workspace = true, features = ["ssr"] }
 leptos_axum.workspace = true
 
 axum.workspace = true
-simple_logger.workspace = true
 tokio.workspace = true
 tower.workspace = true
 tower-http.workspace = true
 log.workspace = true
 #
-surrealdb.workspace = true
-once_cell.workspace = true
-serde = { workspace = true, features = ["derive"] }
-dotenv = "0.15.0"
+simple_logger = "4.2.0"
+#

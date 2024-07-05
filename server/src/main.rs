@@ -5,11 +5,11 @@ use leptos::*;
 use leptos_axum::{generate_route_list, LeptosRoutes};
 
 pub mod fileserv;
-pub mod db;
 
 #[tokio::main]
 async fn main() {
     simple_logger::init_with_level(log::Level::Debug).expect("couldn't initialize logging");
+    // services::get_db().await.expect("couldn't intialize database");
 
     // Setting get_configuration(None) means we'll be using cargo-leptos's env values
     // For deployment these variables are:
